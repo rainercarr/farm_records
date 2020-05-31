@@ -1,0 +1,83 @@
+Livestock Records Schema
+
+==Overall Record for the Animal==
+Animal (
+	PK: animal_id
+	FK: species (Species)
+	tag_number
+	name
+	birth_date
+	color
+	FK: dam (different Animal, same Species, Sex must be F) self-relationship
+	FK: sire (different Animal, same Species, Sex M) self-relationship
+	Sex (M or F only)
+	death_date
+	FK: (Death Cause)
+	Slaughter Date
+	FK: (Slaughter Location)
+	FK: (Lot Number)
+	Hanging Weight
+	cull_flag
+	FK: (Cull Reason)
+	Purchase Date
+	FK: (Vendor)
+)
+
+==Birth Record==
+Birth (
+	PK: birth_id
+	FK: dam (Animal)
+	FK: sire (Animal)
+	REQ'D FK: offspring (Animal)
+	REQ'D: date
+	Birth Notes
+	Problem Birth Flag
+)
+
+==Death== Each animal has one or more cause of death (from Death Causes table)
+Cause Of Death (
+	PK: death_id
+	REQ'D FK: death_cause_id 
+)
+
+==Vaccination Record==
+Vaccination (
+	PK: vacc_id
+	REQ'D FK: animal_id
+	REQ'D FK: vaccination_type
+	date		
+)
+
+==Animal Note and Attached Photos==
+Animal Note (
+	PK: inv_record_id
+	FK: (Animal)
+	date
+	note_text
+)
+
+Note Photo (
+	PK: photo_id
+	FK: (Animal Note)
+)
+	
+
+RELATIONS we want to LIMIT CHOICE/LESSEN ACCIDENTAL DUPLICATION
+Species ( PK: species_name )
+Color ( PK: color )
+Death Cause ( PK: cause )
+Slaughter Location ( PK: location )
+Cull Reason ( PK: reason )
+Livestock Vendor ( PK: Vendor name )
+Lot Number ( PK: Lot number )
+Vaccination Type ( PK: vacc_name )
+
+RELATIONS TO HOLD ADDITIONAL DATA
+
+
+
+
+
+
+
+	
