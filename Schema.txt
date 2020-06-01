@@ -7,6 +7,7 @@ Animal (
 	tag_number
 	name
 	birth_date
+	FK: birth_note (Note)
 	color
 	FK: dam (different Animal, same Species, Sex must be F) self-relationship
 	FK: sire (different Animal, same Species, Sex M) self-relationship
@@ -23,7 +24,7 @@ Animal (
 	FK: (Vendor)
 )
 
-==Birth Record==
+==Birth Record== Animal (one-to-one) Birth
 Birth (
 	PK: birth_id
 	FK: dam (Animal)
@@ -34,9 +35,9 @@ Birth (
 	Problem Birth Flag
 )
 
-==Death== Each animal has one or more cause of death (from Death Causes table)
+==Death== Animal (many-to-many) Cause of Death
 Cause Of Death (
-	PK: death_id
+	PK: animal_id
 	REQ'D FK: death_cause_id 
 )
 
@@ -52,6 +53,7 @@ Vaccination (
 Animal Note (
 	PK: inv_record_id
 	FK: (Animal)
+	FK: (Note Reason)
 	date
 	note_text
 )
@@ -71,6 +73,7 @@ Cull Reason ( PK: reason )
 Livestock Vendor ( PK: Vendor name )
 Lot Number ( PK: Lot number )
 Vaccination Type ( PK: vacc_name )
+Note Reason ( PK: reason ) (birth, death, slaughter, sale, inventory, health, other )
 
 RELATIONS TO HOLD ADDITIONAL DATA
 
